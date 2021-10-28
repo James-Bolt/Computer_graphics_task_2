@@ -14,11 +14,12 @@ def NonLocalMeans(img):
 
 
 def makeMask(img):
-    image = cv2.imread(img)
+    b, g, r = cv2.split(img)
+    image = cv2.merge([r, g, b])
     kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (7, 7))
     image_erode = cv2.erode(image, kernel)
     hsv_img = cv2.cvtColor(image_erode, cv2.COLOR_BGR2HSV)
-    markers = np.zeros((image.shape[0], image.shape[1]), dtype=" int32 ")
+    markers = np.zeros((image.shape[0], image.shape[1]), dtype="int32")
     markers[90: 140, 90: 140] = 255
     markers[236: 255, 0: 20] = 1
     markers[0: 20, 0: 20] = 1
@@ -34,6 +35,11 @@ def makeMask(img):
 
 if __name__ == '__main__':
     img = cv2.imread("Samples/1.jpg")
-    NonLocalMeans(img)
-    plt.show()
+    #NonLocalMeans(img)
+    #plt.show()
+    mask = makeMask(img)
+    b, g, r = cv2.split(mask)
+    newImg = cv2.merge([r, g, b])
+    cv2.imshow("aa", img)
+    cv2.imshow("a", newImg)
     k = cv2.waitKey(0)
