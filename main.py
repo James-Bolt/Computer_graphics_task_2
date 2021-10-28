@@ -35,8 +35,5 @@ def makeMask(img):
 if __name__ == '__main__':
     img = cv2.imread("Samples/1.jpg")
     NonLocalMeans(img)
-    newimg = makeMask(img)
-    plt.imshow(newimg)
-
     plt.show()
     k = cv2.waitKey(0)
