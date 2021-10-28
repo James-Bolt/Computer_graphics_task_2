@@ -3,8 +3,7 @@ import numpy
 import Samples
 from matplotlib import pyplot as plt
 
-if __name__ == '__main__':
-    img = cv2.imread("Samples/1.jpg")
+def  NonLocalMeans(img):
     b, g, r = cv2.split(img)
     rgb_img = cv2.merge([r, g, b])
 
@@ -13,8 +12,10 @@ if __name__ == '__main__':
     rgb_dst = cv2.merge([r, g, b])
     plt.subplot(211), plt.imshow(rgb_img)
     plt.subplot(212), plt.imshow(rgb_dst)
-    plt.show()
-    cv2.imshow("Display window", img)
 
+if __name__ == '__main__':
+    img = cv2.imread("Samples/1.jpg")
+    NonLocalMeans(img)
+    plt.show()
 
     k = cv2.waitKey(0)
